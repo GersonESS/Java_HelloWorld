@@ -16,11 +16,15 @@ public class App {
         HttpRequest requisicao = HttpRequest.newBuilder(URI.create(url)).GET().build();
         HttpResponse<String> resposta = cliente.send(requisicao, BodyHandlers.ofString());
         String body = resposta.body();
-        System.out.println(body);
+        // System.out.println(body);
         // extrair os dados
         var parser = new JsonParser();
-        List<Map<String, String>> listaDeFimes = parser.parse(body);
+        List<Map<String, String>> listaDeFilmes = parser.parse(body);
+        // System.out.println(listaDeFilmes.get(0));
         //
+        for (Map<String, String> filme : listaDeFilmes) {
+            System.out.println(filme.get("title"));
+        }
 
     }
 }
